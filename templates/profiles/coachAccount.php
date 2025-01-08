@@ -5,7 +5,7 @@ session_start();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Coachs</title>
+    <title>Profil du Coach</title>
     <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>
@@ -26,16 +26,18 @@ session_start();
         </nav>
     </header>
 
-    <h1>Liste des Coachs</h1>
-    <div class="coaches-container">
-        <?php foreach ($coaches as $coach): ?>
-            <a href="/coach/profile/<?php echo $coach['id']; ?>" class="coach-card-link">
-                <div class="coach-card">
-                    <h2><?php echo htmlspecialchars(isset($coach['name']) ? $coach['name'] : 'Nom non disponible'); ?></h2>
-                    <p><?php echo htmlspecialchars(isset($coach['email']) ? $coach['email'] : 'Email non disponible'); ?></p>
-                </div>
-            </a>
-        <?php endforeach; ?>
+    <h1>Profil du Coach</h1>
+    <div class="coach-profile">
+        <h2><?php echo htmlspecialchars($coach['name']); ?></h2>
+        <p>Email : <?php echo htmlspecialchars($coach['email']); ?></p>
+        <p>Bio : <?php echo htmlspecialchars($coach['bio'] ?? 'Le coach n\'a pas fourni de bio.'); ?></p>
+        <p>URL de la vidéo : 
+            <?php if (!empty($coach['video_url'])): ?>
+                <a href="<?php echo htmlspecialchars($coach['video_url']); ?>" target="_blank"><?php echo htmlspecialchars($coach['video_url']); ?></a>
+            <?php else: ?>
+                Le coach n'a pas fourni d'URL de vidéo.
+            <?php endif; ?>
+        </p>
     </div>
 </body>
 </html>

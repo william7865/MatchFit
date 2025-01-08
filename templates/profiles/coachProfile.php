@@ -65,10 +65,5 @@ $video_url = $user['video_url'] ?? '';
 
         <button type="submit">Mettre à jour</button>
     </form>
-
-    <!-- Bouton de déconnexion -->
-    <form action="/logout" method="post">
-        <button type="submit">Déconnexion</button>
-    </form>
 </body>
 </html>

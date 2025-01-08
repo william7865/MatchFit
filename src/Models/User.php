@@ -23,9 +23,10 @@ class User {
             $stmt->execute([$user['id']]);
         }
     }
+
     public static function getAllCoaches() {
         $pdo = self::getDatabaseConnection();
-        $sql = "SELECT users.name, users.email FROM users WHERE users.role = 'coach'";
+        $sql = "SELECT id, name, email FROM users WHERE role = 'coach'";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -52,6 +53,7 @@ class User {
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
     public static function update($userId, $name, $email, $password = null) {
         $pdo = self::getDatabaseConnection();
         $sql = "UPDATE users SET name = ?, email = ?";
@@ -68,6 +70,14 @@ class User {
 
         $stmt = $pdo->prepare($sql);
         return $stmt->execute($params);
+    }
+
+    public static function findById($id) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     private static function getDatabaseConnection() {

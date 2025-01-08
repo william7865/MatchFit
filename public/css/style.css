@@ -61,3 +61,24 @@ footer {
     width: 100%;
     bottom: 0;
 }
+.coaches-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.coach-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    width: calc(33.333% - 40px); /* Trois cartes par ligne avec un espace de 20px entre elles */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.coach-card h2 {
+    margin: 0 0 10px;
+}
+
+.coach-card p {
+    margin: 0;
+}
