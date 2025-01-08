@@ -5,7 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     try {
-        \App\Models\User::create($name, $email, $password);
+        $role = $_POST['role'];
+        \App\Models\User::create($name, $email, $password, $role);
         header('Location: /login');
         exit;
     } catch (Exception $e) {
@@ -21,18 +22,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Register</h1>
-    <form method="POST">
-        <label>Name:</label>
-        <input type="text" name="name" required>
-        <br>
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <br>
-        <label>Password:</label>
-        <input type="password" name="password" required>
-        <br>
-        <button type="submit">Register</button>
-    </form>
+    <form method="POST" action="/register">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+        <option value="user">User</option>
+        <option value="coach">Coach</option>
+    </select>
+
+    <button type="submit">Register</button>
+</form>
+
     <?php if (!empty($error)) echo "<p>$error</p>"; ?>
 </body>
 </html>
