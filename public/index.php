@@ -47,6 +47,26 @@ switch ($path) {
         $authController->logout();
         break;
 
+    case '/coach/profile':
+        session_start();
+        if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'coach') {
+            require __DIR__ . '/../templates/profiles/coachProfile.php';
+        } else {
+            header('Location: /login');
+            exit;
+        }
+        break;
+
+    case '/user/profile':
+        session_start();
+        if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'user') {
+            require __DIR__ . '/../templates/profiles/userProfile.php';
+        } else {
+            header('Location: /login');
+            exit;
+        }
+        break;
+
     default:
         http_response_code(404);
         echo "Page not found";
