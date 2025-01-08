@@ -1,0 +1,45 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    volumes:
+      - ./public:/var/www/html/public
+      - ./src:/var/www/html/src
+      - ./templates:/var/www/html/templates
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: matchfit
+      DB_USER: postgres
+      DB_PASSWORD: password
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: matchfit
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+  pgadmin:
+      image: dpage/pgadmin4
+      environment:
+        PGADMIN_DEFAULT_EMAIL: admin@admin.com
+        PGADMIN_DEFAULT_PASSWORD: admin
+      ports:
+        - "8082:80"
+      volumes:
+        - pgadmin_data:/var/lib/pgadmin
+      depends_on:
+        - db
+
+volumes:
+  postgres_data:
+  pgadmin_data:

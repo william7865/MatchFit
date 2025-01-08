@@ -1,0 +1,14 @@
+{
+    "name": "matchfit/app",
+    "description": "Application de coaching",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
