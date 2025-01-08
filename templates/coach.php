@@ -1,13 +1,16 @@
 <?php
-session_start();
+require_once __DIR__ . '/../src/Models/User.php';
+
+$coaches = \App\Models\User::getAllCoaches();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MatchFit - Accueil</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Liste des Coachs</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+</head>
 <body>
     <header>
         <nav>
@@ -26,12 +29,11 @@ session_start();
         </nav>
     </header>
 
-    <main>
-    <h1>Bienvenue sur MatchFit</h1>
-        <section>
-            <h2>Rejoignez-nous et trouvez le coach de vos rêves !</h2>
-            <p>Connectez-vous ou inscrivez-vous pour accéder à nos services de coaching personnalisé.</p>
-        </section>
-    </main>
+    <h1>Liste des Coachs</h1>
+    <ul>
+        <?php foreach ($coaches as $coach): ?>
+            <li><?php echo htmlspecialchars($coach['name']); ?> - <?php echo htmlspecialchars($coach['email']); ?></li>
+        <?php endforeach; ?>
+    </ul>
 </body>
 </html>

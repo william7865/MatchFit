@@ -23,6 +23,13 @@ class User {
             $stmt->execute([$user['id']]);
         }
     }
+    public static function getAllCoaches() {
+        $pdo = self::getDatabaseConnection();
+        $sql = "SELECT users.name, users.email FROM users WHERE users.role = 'coach'";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public static function authenticate($email, $password) {
         $pdo = self::getDatabaseConnection();
