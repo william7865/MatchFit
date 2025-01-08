@@ -45,6 +45,23 @@ class User {
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public static function update($userId, $name, $email, $password = null) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "UPDATE users SET name = ?, email = ?";
+        $params = [$name, $email];
+
+        if ($password !== null) {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $sql .= ", password = ?";
+            $params[] = $hashedPassword;
+        }
+
+        $sql .= " WHERE id = ?";
+        $params[] = $userId;
+
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute($params);
+    }
 
     private static function getDatabaseConnection() {
         $host = getenv('DB_HOST');

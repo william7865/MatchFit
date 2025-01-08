@@ -53,6 +53,7 @@ class AuthController {
             session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['email'] = $user['email'];
 
             if ($user['role'] === 'coach') {
                 header('Location: /coach/profile');
@@ -64,6 +65,24 @@ class AuthController {
             $error = 'Email ou mot de passe incorrect.';
             require __DIR__ . '/../../templates/login.php';
         }
+    }
+}
+public function updateProfile() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        session_start();
+        $userId = $_SESSION['user_id'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'] ?? null;
+
+        \App\Models\User::update($userId, $name, $email, $password);
+
+        if ($_SESSION['role'] === 'coach') {
+            header('Location: /coach/profile');
+        } else {
+            header('Location: /user/profile');
+        }
+        exit;
     }
 }
     public function logout() {

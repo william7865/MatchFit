@@ -1,10 +1,5 @@
 <?php
-// Redirige l'utilisateur si déjà connecté (par exemple avec $_SESSION)
 session_start();
-if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard'); // Redirige vers une page de tableau de bord si déjà connecté
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,14 +7,23 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MatchFit - Accueil</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Si tu veux ajouter un fichier CSS -->
-</head>
+    <link rel="stylesheet" href="styles.css">
 <body>
     <header>
         <h1>Bienvenue sur MatchFit</h1>
         <nav>
-            <a href="login">Se connecter</a> |
-            <a href="register">S'inscrire</a>
+            <a href="/">Accueil</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="/coach">Coach</a>
+                <a href="/free-courses">Cours gratuit</a>
+                <a href="/profile">Profile</a>
+                <form action="/logout" method="post" style="display:inline;">
+                    <button type="submit">Déconnexion</button>
+                </form>
+            <?php else: ?>
+                <a href="/login">Se connecter</a> |
+                <a href="/register">S'inscrire</a>
+            <?php endif; ?>
         </nav>
     </header>
 
@@ -29,9 +33,5 @@ if (isset($_SESSION['user_id'])) {
             <p>Connectez-vous ou inscrivez-vous pour accéder à nos services de coaching personnalisé.</p>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2025 MatchFit - Tous droits réservés</p>
-    </footer>
 </body>
 </html>
