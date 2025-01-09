@@ -87,21 +87,55 @@ class AuthController {
             $bio = $_POST['bio'] ?? '';
             $video_url = $_POST['video_url'] ?? '';
             $status = $_POST['status'] ?? 'unavailable';
+            $sports = $_POST['sports'] ?? [];
 
-            \App\Models\User::update($userId, $name, $email, $password);
+            User::update($userId, $name, $email, $password);
 
             if ($_SESSION['role'] === 'coach') {
-                \App\Models\User::updateCoachProfile($userId, $bio, $video_url, $status);
-                header('Location: /coach/profile');
-            } else {
-                header('Location: /user/profile');
+                User::updateCoachProfile($userId, $bio, $video_url, $status);
             }
+
+            User::updateUserSports($userId, $sports);
+
+            header('Location: /profile');
             exit;
         }
     }
 
+    public function removeUserSport() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (!isset($_SESSION['user_id'])) {
+                header('Location: /login');
+                exit;
+            }
+
+            $userId = $_SESSION['user_id'];
+            $sportId = $_POST['sport_id'];
+
+            User::removeUserSport($userId, $sportId);
+
+            header('Location: /user/profile');
+            exit;
+        }
+    }
+
+    public function showUserProfile() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $userId = $_SESSION['user_id'];
+        $user = User::findById($userId);
+        $sports = User::getSports();
+        $userSports = User::getUserSports($userId);
+
+        require __DIR__ . '/../../templates/profiles/userProfile.php';
+    }
+
     public function showCoachProfile($coachId) {
-        $coach = \App\Models\User::findById($coachId);
+        $coach = User::findById($coachId);
         if (!$coach || $coach['role'] !== 'coach') {
             echo "Erreur : coach non trouvé.";
             exit;

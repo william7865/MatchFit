@@ -66,6 +66,12 @@ switch ($path) {
         $authController->updateProfile();
         break;
 
+    case '/removeUserSport':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController->removeUserSport();
+        }
+        break;
+
     case '/free-courses':
         require __DIR__ . '/../templates/freeCourses.php';
         break;

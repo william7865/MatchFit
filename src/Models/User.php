@@ -88,7 +88,47 @@ class User {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public static function getSports() {
+        $pdo = self::getDatabaseConnection();
+        $sql = "SELECT * FROM sports";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+   public static function updateUserSports($userId, $sports) {
+        $pdo = self::getDatabaseConnection();
+
+        // Récupérer les sports existants de l'utilisateur
+        $existingSports = self::getUserSports($userId);
+        $existingSportIds = array_column($existingSports, 'id');
+
+        // Ajouter les nouveaux sports
+        $sql = "INSERT INTO user_sports (user_id, sport_id) VALUES (?, ?)";
+        $stmt = $pdo->prepare($sql);
+        foreach ($sports as $sportId) {
+            if (!in_array($sportId, $existingSportIds)) {
+                $stmt->execute([$userId, $sportId]);
+            }
+        }
+    }
+
+    public static function removeUserSport($userId, $sportId) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "DELETE FROM user_sports WHERE user_id = ? AND sport_id = ?";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([$userId, $sportId]);
+    }
+
+    public static function getUserSports($userId) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "SELECT sports.id, sports.name FROM user_sports 
+                JOIN sports ON user_sports.sport_id = sports.id 
+                WHERE user_sports.user_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     private static function getDatabaseConnection() {
         $host = getenv('DB_HOST');
         $db = getenv('DB_NAME');
