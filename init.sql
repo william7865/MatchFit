@@ -48,3 +48,9 @@ CREATE TABLE IF NOT EXISTS reviews (
     rating INT CHECK(rating >= 1 AND rating <= 5),
     comment TEXT
 );
+
+INSERT INTO sports (name) VALUES ('Football');
+INSERT INTO sports (name) VALUES ('Basketball');
+INSERT INTO sports (name) VALUES ('Tennis');
+INSERT INTO sports (name) VALUES ('Natation');
+INSERT INTO sports (name) VALUES ('Cyclisme');
