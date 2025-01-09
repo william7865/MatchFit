@@ -7,6 +7,7 @@
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li><a href="/coach">Coach</a></li>
                 <li><a href="/free-courses">Cours</a></li>
+                <li><a href="/profile">Profil</a></li>
                 <li>
                     <form action="/logout" method="post" style="display:inline;">
                         <button type="submit">Déconnexion</button>
