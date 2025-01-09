@@ -10,12 +10,13 @@
                 <li>
                     <form action="/logout" method="post" style="display:inline;">
                         <button type="submit">Déconnexion</button>
+                        
                     </form>
                 </li>
             <?php else: ?>
                 <div class="buttons">
-                    <a href="/register" class="btn-nav">Inscription</a>
-                    <a href="/login" class="btn-nav">Connexion</a>
+                <a href="/login" class="btn-nav">Connexion</a>
+                <a href="/register" class="btn-nav">Inscription</a>
                 </div>
             <?php endif; ?>
         </ul>

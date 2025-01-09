@@ -18,6 +18,19 @@ CREATE TABLE IF NOT EXISTS coaches (
     status VARCHAR(50) CHECK(status IN ('available', 'unavailable')) DEFAULT 'unavailable'
 );
 
+-- Table des sports
+CREATE TABLE IF NOT EXISTS sports (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Table des préférences sportives des utilisateurs
+CREATE TABLE IF NOT EXISTS user_sports (
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    sport_id INT REFERENCES sports(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, sport_id)
+);
+
 -- Table des messages entre utilisateurs et coachs
 CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
