@@ -1,16 +1,20 @@
-<header>
-        <nav>
-            <a href="/">Accueil</a>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="/coach">Coach</a>
-                <a href="/free-courses">Cours gratuit</a>
-                <a href="/profile">Profile</a>
-                <form action="/logout" method="post" style="display:inline;">
-                    <button type="submit">Déconnexion</button>
-                </form>
-            <?php else: ?>
-                <a href="/login">Se connecter</a> |
-                <a href="/register">S'inscrire</a>
-            <?php endif; ?>
-        </nav>
-    </header>
+    <link rel="stylesheet" href="/css/header.css">
+    <header>
+    <div class="logo">logo</div>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a href="/coach">Coach</a></li>
+        <li><a href="/free-courses">Cours</a></li>
+        <action="/logout" method="post" style="display:inline;">
+        <button type="submit">Déconnexion</button>
+      </ul>
+    </nav>
+    <?php else: ?>
+    <div class="buttons">
+    <a href="/register" class="btn-nav">Inscription</a>
+        <a href="/login" class="btn-nav">Connexion</a>
+        <?php endif; ?>
+    </div>
+  </header>

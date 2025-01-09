@@ -1,84 +1,186 @@
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background-color: #4CAF50;
-    color: white;
+    line-height: 1.6;
+    color: #333;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,131,0,1) 100%);
+  }
+  
+ 
+  
+  main {
     text-align: center;
-    padding: 20px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-}
-
-main {
-    padding: 20px;
-    text-align: center;
-}
-
-form {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #f1f1f1;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-.coaches-container {
+    padding: 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero span {
+    color: #ff8300;
+  }
+  
+  .hero .cards {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 20px; /* Ajoute un espace de 20px entre les cartes */
+    background-color: transparent; /* Assure que l'arrière-plan des espaces entre les cartes est transparent */
+  }
+  
+  .hero .card {
+    border-radius: 10px;
+    padding: 0; /* Supprime le padding pour éviter les espaces blancs */
+    margin: 0; /* Supprime les marges pour éviter les espaces blancs entre les cartes */
+    width: 450px;
+    background-color: #fff; /* Fond blanc pour les cartes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère pour les cartes */
+    display: flex;
+    flex-direction: column; /* Organise le contenu en colonne */
+    overflow: hidden; /* Cache tout débordement */
+  }
 
-.coach-card {
-    border: 1px solid #ccc;
-    padding: 20px;
+  .hero .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Assure que l'image remplit uniformément son conteneur */
+  }
+
+  .hero .card-content {
+    text-align: center; /* Centre le texte */
+    margin-top: auto; /* Pousse le contenu vers le bas */
+  }
+
+  
+  .hero .card h2 {
+    color: #ff8300;
+  }
+  
+  .hero .card a {
+    color: #ff8300;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  
+  .carousel {
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .container {
+    align-content: center;
+    width: 55vmin;
+    margin: 0 auto;
+    overflow: hidden;
     border-radius: 8px;
-    width: calc(33.333% - 40px); /* Trois cartes par ligne avec un espace de 20px entre elles */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    height: 56Vmin;
+  }
+  
+  .wrapper {
+    width: 100%; /* Assuming you have 4 images */
+    display: flex;
+    animation: slide 10s linear infinite;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(-200%);
+    }
+    75% {
+      transform: translateX(-300%);
+    }
+    100% {
+      transform: translateX(-400%);
+    }
+  }
+  
+  img {
+    width: 100%;
+    object-fit: cover; /* Assure que les images remplissent uniformément leur conteneur */
+    height: auto; /* Ajuste la hauteur proportionnellement */
+  }
+  
+  .team {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  
+  .profile {
+    background-color: #f0f0f0; /* Fond gris */
+    border-radius: 16px; /* Coins arrondis */
+    padding: 1.5rem; /* Ajoute du padding à l'intérieur du bloc */
+    margin: 1rem; /* Ajoute de la marge autour du bloc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+    text-align: center; /* Centre le texte à l'intérieur du bloc */
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-size: cover; /* Assure que l'image couvre entièrement la div */
+    background-position: center; /* Centre l'image dans la div */
+  }
+  
+  footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  section mark{
+      color: #ff8300;
+      background-color: #fff;
+  }
+  
 
-.coach-card h2 {
-    margin: 0 0 10px;
-}
-
-.coach-card p {
-    margin: 0;
-}
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Espace entre les liens */
+  }
+  
+  nav ul li {
+    position: relative;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #000; /* Couleur du texte */
+    font-weight: bold;
+    padding: 5px 0; /* Ajoute du padding pour l'espace autour du texte */
+    position: relative;
+  }
+  
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0;
+    background: #ff8300; /* Couleur de la ligne de surlignement */
+    transition: width 0.3s ease, right 0.3s ease; /* Animation de la ligne */
+  }
+  
+  nav ul li a:hover::after {
+    width: 100%;
+  }
