@@ -38,18 +38,6 @@ $status = $user['status'] ?? 'unavailable';
         <label for="password">Nouveau mot de passe:</label>
         <input type="password" id="password" name="password">
 
-        <label for="bio">Bio:</label>
-        <textarea id="bio" name="bio"><?php echo htmlspecialchars($bio); ?></textarea>
-
-        <label for="video_url">URL de la vidéo:</label>
-        <input type="url" id="video_url" name="video_url" value="<?php echo htmlspecialchars($video_url); ?>">
-
-        <label for="status">Statut:</label>
-        <select id="status" name="status">
-            <option value="available" <?php echo ($status === 'available') ? 'selected' : ''; ?>>Disponible</option>
-            <option value="unavailable" <?php echo ($status === 'unavailable') ? 'selected' : ''; ?>>Indisponible</option>
-        </select>
-
         <label for="sports">Sports préférés:</label>
         <select id="sports" name="sports[]" multiple>
             <?php foreach ($sports as $sport): ?>
