@@ -23,7 +23,7 @@ $status = $user['status'] ?? 'unavailable';
 <head>
     <meta charset="UTF-8">
     <title>Profil Utilisateur</title>
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/css/userProfile.css">
 </head>
 <body>
     <?php include __DIR__ . '../../partials/header.php'; ?>
@@ -59,7 +59,7 @@ $status = $user['status'] ?? 'unavailable';
             <?php endforeach; ?>
         </select>
 
-        <button type="submit">Mettre à jour</button>
+        <button type="submit" class="btn-update">Mettre à jour</button>
     </form>
 
     <h2>Vos sports préférés</h2>
@@ -70,7 +70,7 @@ $status = $user['status'] ?? 'unavailable';
                     <?php echo htmlspecialchars($sport['name']); ?>
                     <form method="POST" action="/removeUserSport" style="display:inline;">
                         <input type="hidden" name="sport_id" value="<?php echo $sport['id']; ?>">
-                        <button type="submit">Supprimer</button>
+                        <button type="submit" class="btn-delete">Supprimer</button>
                     </form>
                 </li>
             <?php endforeach; ?>
