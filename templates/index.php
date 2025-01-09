@@ -17,5 +17,6 @@ session_start();
             <p>Connectez-vous ou inscrivez-vous pour accéder à nos services de coaching personnalisé.</p>
         </section>
     </main>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

@@ -21,5 +21,6 @@ session_start();
             </a>
         <?php endforeach; ?>
     </div>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

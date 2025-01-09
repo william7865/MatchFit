@@ -9,13 +9,19 @@ session_start();
     <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>
-    <?php include __DIR__ . '/partials/header.php'; ?>
+    <?php include __DIR__ . '/../partials/header.php'; ?>
 
     <h1>Profil du Coach</h1>
     <div class="coach-profile">
         <h2><?php echo htmlspecialchars($coach['name']); ?></h2>
         <p>Email : <?php echo htmlspecialchars($coach['email']); ?></p>
-        <p>Bio : <?php echo htmlspecialchars($coach['bio'] ?? 'Le coach n\'a pas fourni de bio.'); ?></p>
+        <p>Bio : 
+            <?php if (!empty($coach['bio'])): ?>
+                <?php echo htmlspecialchars($coach['bio']); ?>
+            <?php else: ?>
+                Le coach n'a pas fourni de bio.
+            <?php endif; ?>
+        </p>
         <p>Vidéo : 
             <?php if (!empty($coach['video_url'])): ?>
                 <?php
@@ -37,5 +43,6 @@ session_start();
             <?php endif; ?>
         </p>
     </div>
+    <?php include __DIR__ . '/../partials/footer.php'; ?>
 </body>
 </html>

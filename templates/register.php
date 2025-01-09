@@ -45,5 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="login">Déjà inscrit ?</a>
     </form>
     <?php if (!empty($error)) echo "<p>$error</p>"; ?>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

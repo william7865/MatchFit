@@ -35,5 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="register">Pas encore inscrit ?</a>
         <?php if (!empty($error)) echo "<p>$error</p>"; ?>
     </form>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

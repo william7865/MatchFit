@@ -22,7 +22,7 @@ if (!$user) {
     <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>
-    <?php include __DIR__ . '/partials/header.php'; ?>
+    <?php include __DIR__ . '../../partials/header.php'; ?>
 
     <h1>Bienvenue sur votre profil, Utilisateur</h1>
     <!-- Afficher les informations de l'utilisateur -->
@@ -38,5 +38,6 @@ if (!$user) {
 
         <button type="submit">Mettre à jour</button>
     </form>
+    <?php include __DIR__ . '../../partials/footer.php'; ?>
 </body>
 </html>

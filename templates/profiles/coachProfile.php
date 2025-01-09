@@ -28,7 +28,7 @@ $video_url = $user['video_url'] ?? '';
     <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>
-    <?php include __DIR__ . '/partials/header.php'; ?>
+    <?php include __DIR__ . '../../partials/header.php'; ?>
     <h1>Bienvenue sur votre profil, Coach</h1>
     <!-- Afficher les informations du coach -->
     <form method="POST" action="/updateProfile">
@@ -49,5 +49,6 @@ $video_url = $user['video_url'] ?? '';
 
         <button type="submit">Mettre à jour</button>
     </form>
+    <?php include __DIR__ . '../../partials/footer.php'; ?>
 </body>
 </html>
