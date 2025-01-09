@@ -71,15 +71,24 @@ class User {
         $stmt = $pdo->prepare($sql);
         return $stmt->execute($params);
     }
+    public static function updateCoachProfile($userId, $bio, $video_url) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "UPDATE coaches SET bio = ?, video_url = ? WHERE user_id = ?";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([$bio, $video_url, $userId]);
+    }
 
     public static function findById($id) {
         $pdo = self::getDatabaseConnection();
-        $sql = "SELECT * FROM users WHERE id = ?";
+        $sql = "SELECT users.*, coaches.bio, coaches.video_url 
+                FROM users 
+                LEFT JOIN coaches ON users.id = coaches.user_id 
+                WHERE users.id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
+    
     private static function getDatabaseConnection() {
         $host = getenv('DB_HOST');
         $db = getenv('DB_NAME');

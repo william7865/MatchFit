@@ -10,35 +10,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: /login');
         exit;
     } catch (Exception $e) {
-        $error = $e->getMessage();
+        $error = "L'email est déjà utilisé.";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/register.css">
+    <title>Inscription</title>
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="POST" action="/register">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
+<h2>Inscription</h2>
+    <form class="inscription" action="/register" method="post">
+        <label for="name">Nom</label>
+        <input type="text" name="name" id="name">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password">
+        <label for="password2">Confirmer le mot de passe</label>
+        <input type="password" name="password2" id="password2">
     <label for="role">Role:</label>
     <select id="role" name="role" required>
         <option value="user">User</option>
         <option value="coach">Coach</option>
     </select>
-
-    <button type="submit">Register</button>
+    <button type="submit">S'inscrire</button>
+    <a href="login">Déjà inscrit ?</a>
 </form>
 
     <?php if (!empty($error)) echo "<p>$error</p>"; ?>

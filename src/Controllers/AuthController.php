@@ -50,7 +50,9 @@ class AuthController {
             $user = User::authenticate($email, $password);
 
             if ($user) {
-                session_start();
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['email'] = $user['email'];
@@ -70,15 +72,25 @@ class AuthController {
 
     public function updateProfile() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (!isset($_SESSION['user_id'])) {
+                header('Location: /login');
+                exit;
+            }
+
             $userId = $_SESSION['user_id'];
-            $name = $_POST['name'];
-            $email = $_POST['email'];
+            $name = $_POST['name'] ?? '';
+            $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? null;
+            $bio = $_POST['bio'] ?? '';
+            $video_url = $_POST['video_url'] ?? '';
 
             \App\Models\User::update($userId, $name, $email, $password);
 
             if ($_SESSION['role'] === 'coach') {
+                \App\Models\User::updateCoachProfile($userId, $bio, $video_url);
                 header('Location: /coach/profile');
             } else {
                 header('Location: /user/profile');
@@ -93,7 +105,7 @@ class AuthController {
             echo "Erreur : coach non trouvé.";
             exit;
         }
-    
+
         require __DIR__ . '/../../templates/profiles/coachAccount.php';
     }
 
@@ -103,7 +115,9 @@ class AuthController {
     }
 
     public function logout() {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         session_unset();
         session_destroy();
         header('Location: /');
