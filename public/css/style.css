@@ -136,14 +136,6 @@ body {
     background-position: center; /* Centre l'image dans la div */
   }
   
-  footer {
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-  }
-  
   section mark{
       color: #ff8300;
       background-color: #fff;

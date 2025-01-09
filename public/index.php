@@ -72,6 +72,12 @@ switch ($path) {
         }
         break;
 
+    case '/createSession':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController->createSession();
+        }
+        break;
+
     case '/free-courses':
         require __DIR__ . '/../templates/free-courses.php';
         break;

@@ -19,6 +19,9 @@ $email = $user['email'] ?? '';
 $bio = $user['bio'] ?? '';
 $video_url = $user['video_url'] ?? '';
 $status = $user['status'] ?? 'unavailable';
+
+// Récupérer les séances de sport du coach
+$sessions = \App\Models\User::getSessionsByCoach($_SESSION['user_id']);
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +29,11 @@ $status = $user['status'] ?? 'unavailable';
 <head>
     <meta charset="UTF-8">
     <title>Profil Coach</title>
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/css/coachProfile.css">
 </head>
 <body>
     <?php include __DIR__ . '../../partials/header.php'; ?>
-    <h1>Bienvenue sur votre profil, Coach</h1>
+    <h1>Bienvenue sur votre profil, Coach <?php echo htmlspecialchars($name); ?></h1>
     <!-- Afficher les informations du coach -->
     <form method="POST" action="/updateProfile">
         <label for="name">Nom:</label>
@@ -56,6 +59,36 @@ $status = $user['status'] ?? 'unavailable';
 
         <button type="submit">Mettre à jour</button>
     </form>
+
+    <h2>Ajouter une séance de sport</h2>
+    <form method="POST" action="/createSession">
+        <label for="title">Titre:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="price">Prix:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <button type="submit">Ajouter la séance</button>
+    </form>
+
+    <h2>Vos séances de sport</h2>
+    <ul>
+        <?php if (!empty($sessions)): ?>
+            <?php foreach ($sessions as $session): ?>
+                <li>
+                    <strong><?php echo htmlspecialchars($session['title']); ?></strong><br>
+                    <?php echo htmlspecialchars($session['description']); ?><br>
+                    Prix : <?php echo htmlspecialchars($session['price']); ?> €
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li>Vous n'avez pas encore ajouté de séances de sport.</li>
+        <?php endif; ?>
+    </ul>
+
     <?php include __DIR__ . '../../partials/footer.php'; ?>
 </body>
 </html>

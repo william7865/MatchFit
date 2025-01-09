@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/style.css">
+<link rel = "stylesheet" href = "/css/footer.css">
 <footer>
-    <p>2025 tous droits réservés.</p>
-  </footer>
+    <p>2025 Tous droits réservés</p>
+</footer>

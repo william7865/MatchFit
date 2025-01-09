@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333; /* Couleur noire */
+}
+
+.coach-profile .form-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.coach-profile form {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.coach-profile label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.coach-profile input[type="text"],
+.coach-profile input[type="email"],
+.coach-profile input[type="url"],
+.coach-profile input[type="number"],
+.coach-profile textarea,
+.coach-profile select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.coach-profile textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.coach-profile button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ff8300; /* Couleur orange */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.coach-profile button:hover {
+    background-color: #e67300; /* Teinte plus foncée d'orange pour le hover */
+}
+
+.coach-profile .sessions-list {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
+    list-style: none;
+}
+
+.coach-profile .sessions-list li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.coach-profile strong {
+    color: #ff8300; /* Couleur orange */
+}
+
+/* Footer and Header adjustments to match color theme */
+header, footer {
+    background-color: #000; /* Couleur noire */
+    color: #fff; /* Texte blanc */
+}
+
+header a, footer a {
+    color: #ff8300; /* Liens en orange */
+    text-decoration: none;
+}
+
+header a:hover, footer a:hover {
+    color: #fff; /* Texte blanc au survol */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .coach-profile .form-container {
+        flex-direction: column;
+    }
+
+    .coach-profile form {
+        margin-bottom: 20px;
+    }
+}

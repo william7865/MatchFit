@@ -149,6 +149,28 @@ class AuthController {
         require __DIR__ . '/../../templates/coach.php';
     }
 
+    public function createSession() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'coach') {
+                header('Location: /login');
+                exit;
+            }
+
+            $coachId = $_SESSION['user_id'];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $price = $_POST['price'];
+
+            User::createSession($coachId, $title, $description, $price);
+
+            header('Location: /coach/profile');
+            exit;
+        }
+    }
+
     public function logout() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();

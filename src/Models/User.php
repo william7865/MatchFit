@@ -129,6 +129,20 @@ class User {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public static function createSession($coachId, $title, $description, $price) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "INSERT INTO sessions (coach_id, title, description, price) VALUES (?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([$coachId, $title, $description, $price]);
+    }
+
+    public static function getSessionsByCoach($coachId) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "SELECT * FROM sessions WHERE coach_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$coachId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     private static function getDatabaseConnection() {
         $host = getenv('DB_HOST');
         $db = getenv('DB_NAME');
