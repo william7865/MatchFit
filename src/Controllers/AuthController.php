@@ -86,11 +86,12 @@ class AuthController {
             $password = $_POST['password'] ?? null;
             $bio = $_POST['bio'] ?? '';
             $video_url = $_POST['video_url'] ?? '';
+            $status = $_POST['status'] ?? 'unavailable';
 
             \App\Models\User::update($userId, $name, $email, $password);
 
             if ($_SESSION['role'] === 'coach') {
-                \App\Models\User::updateCoachProfile($userId, $bio, $video_url);
+                \App\Models\User::updateCoachProfile($userId, $bio, $video_url, $status);
                 header('Location: /coach/profile');
             } else {
                 header('Location: /user/profile');

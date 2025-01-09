@@ -22,6 +22,13 @@ session_start();
                 Le coach n'a pas fourni de bio.
             <?php endif; ?>
         </p>
+        <p>Statut : 
+            <?php if (!empty($coach['status'])): ?>
+                <?php echo htmlspecialchars($coach['status'] === 'available' ? 'Disponible' : 'Indisponible'); ?>
+            <?php else: ?>
+                Le coach n'a pas fourni de statut.
+            <?php endif; ?>
+        </p>
         <p>Vidéo : 
             <?php if (!empty($coach['video_url'])): ?>
                 <?php

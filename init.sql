@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS coaches (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
     bio TEXT,
-    video_url VARCHAR(255)
+    video_url VARCHAR(255),
+    status VARCHAR(50) CHECK(status IN ('available', 'unavailable')) DEFAULT 'unavailable'
 );
 
 -- Table des messages entre utilisateurs et coachs

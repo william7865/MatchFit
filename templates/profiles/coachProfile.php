@@ -18,6 +18,7 @@ $name = $user['name'] ?? '';
 $email = $user['email'] ?? '';
 $bio = $user['bio'] ?? '';
 $video_url = $user['video_url'] ?? '';
+$status = $user['status'] ?? 'unavailable';
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +47,12 @@ $video_url = $user['video_url'] ?? '';
 
         <label for="video_url">URL de la vidéo:</label>
         <input type="url" id="video_url" name="video_url" value="<?php echo htmlspecialchars($video_url); ?>">
+
+        <label for="status">Statut:</label>
+        <select id="status" name="status">
+            <option value="available" <?php echo ($status === 'available') ? 'selected' : ''; ?>>Disponible</option>
+            <option value="unavailable" <?php echo ($status === 'unavailable') ? 'selected' : ''; ?>>Indisponible</option>
+        </select>
 
         <button type="submit">Mettre à jour</button>
     </form>
