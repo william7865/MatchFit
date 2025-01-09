@@ -73,7 +73,7 @@ switch ($path) {
         break;
 
     case '/free-courses':
-        require __DIR__ . '/../templates/freeCourses.php';
+        require __DIR__ . '/../templates/free-courses.php';
         break;
 
     case '/profile':
