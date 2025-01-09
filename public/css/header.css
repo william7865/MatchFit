@@ -1,3 +1,4 @@
+/* Header Styles */
 header {
   display: flex;
   justify-content: space-between;
@@ -28,6 +29,38 @@ header nav ul li a {
   text-decoration: none;
 }
 
+/* Styles pour les boutons */
+header .buttons {
+  display: flex;
+  align-items: center;
+}
+
+header .btn-nav {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+header .btn-nav:hover {
+  background-color: #ff8300;
+  color: #fff;
+}
+
+/* Styles pour l'icône uniquement dans l'en-tête */
+header .btn-nav img.icon {
+  width: 24px; /* Réduit la taille de l'icône */
+  height: 24px; /* Réduit la taille de l'icône */
+  vertical-align: middle; /* Centre l'icône verticalement */
+  margin-right: 5px; /* Ajoute un léger espacement entre l'icône et le texte */
+}
+
+/* Styles pour le bouton Déconnexion */
 header .buttons button {
   background-color: #ff8300;
   color: #fff;
@@ -38,8 +71,8 @@ header .buttons button {
   cursor: pointer;
   transition: all 0.2s;
 }
- 
-header .buttons button:hover{
+
+header .buttons button:hover {
   background-color: #fff;
   color: #ff8300;
 }
