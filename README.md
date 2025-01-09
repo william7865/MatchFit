@@ -50,19 +50,48 @@ pgAdmin est accessible via votre navigateur : [http://localhost:8082]
 ## 📁 Structure du projet
 
 ```
-projet/
-├── public/               # Fichiers publics
-│   ├── index.php        # Point d'entrée
-│   ├── .htaccess       
-│   └── css/
-│       └── style.css    # Styles CSS
-├── src/                 # Code source
-│   ├── Controllers/     # Contrôleurs
-│   ├── Models/         # Modèles
-│   └── Database/       # Configuration BD
-├── templates/           # Templates
-│   ├── layout.php      # Template principal
-│   └── tasks/          # Templates des tâches
+matchfit/
+├── public/                       # Contient les fichiers accessibles au public
+│   ├── css/                      # Dossier pour les fichiers CSS
+│   │   ├── header.css            # Styles spécifiques pour le header
+│   │   ├── login.css             # Styles pour la page de connexion
+│   │   ├── register.css          # Styles pour la page d'inscription
+│   │   ├── style.css             # Styles globaux
+│   │   └── userProfile.css       # Styles pour le profil utilisateur
+│   ├── image/                    # Dossier pour les images
+│   │   ├── basketball.jpg        # Image pour représenter le basketball
+│   │   ├── coach.jpg             # Image pour les coachs
+│   │   ├── deconnexion.png       # Icône pour la déconnexion
+│   │   ├── football.jpg          # Image pour représenter le football
+│   │   ├── icone.png             # Icône générique du site
+│   │   ├── rugby.jpg             # Image pour représenter le rugby
+│   │   ├── tennis.jpg            # Image pour représenter le tennis
+│   │   └── training.jpg          # Image pour représenter l'entraînement sportif
+│   ├── .htaccess                 # Fichier de configuration Apache
+│   └── index.php                 # Point d'entrée principal du projet
+├── src/                          # Contient le code source de l'application
+│   ├── Controllers/              # Contient les fichiers de contrôleurs
+│   │   └── AuthController.php    # Contrôleur pour la gestion de l'authentification
+│   ├── Database/                 # Gestion de la connexion à la base de données
+│   │   └── Database.php          # Classe pour gérer la base de données
+│   ├── Models/                   # Contient les modèles de données
+│       ├── Message.php           # Modèle pour les messages
+│       ├── Review.php            # Modèle pour les avis
+│       └── User.php              # Modèle pour les utilisateurs
+├── templates/                    # Contient les templates pour les vues
+│   ├── partials/                 # Sous-dossier pour les éléments réutilisables
+│   │   ├── footer.php            # Footer commun
+│   │   └── header.php            # Header commun
+│   ├── profiles/                 # Sous-dossier pour les profils
+│   │   ├── coachAccount.php      # Gestion des comptes des coachs
+│   │   ├── coachProfile.php      # Page de profil d'un coach
+│   │   └── userProfile.php       # Page de profil d'un utilisateur
+│   ├── coach.php                 # Page principale pour les coachs
+│   ├── free-courses.php          # Page pour les cours gratuits
+│   ├── index.php                 # Page d'accueil
+│   ├── login.php                 # Page de connexion
+│   └── register.php              # Page d'inscription
+├── .gitignore                    # Fichier pour ignorer certains fichiers/dossiers dans Git
 ├── composer.json        # Dépendances PHP
 ├── Dockerfile          # Configuration Docker
 ├── docker compose.yml  # Configuration Docker Compose
