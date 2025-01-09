@@ -16,21 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Connexion</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST">
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <br>
-        <label>Password:</label>
-        <input type="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
+    <?php include __DIR__ . '/partials/header.php'; ?>
+    <h2>Connexion</h2>
+    <form class ="connexion"action="" method="post">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">Se connecter</button>
+        <a href="register">Pas encore inscrit ?</a>
+        <?php if (!empty($error)) echo "<p>$error</p>"; ?>
     </form>
-    <?php if (!empty($error)) echo "<p>$error</p>"; ?>
 </body>
 </html>
