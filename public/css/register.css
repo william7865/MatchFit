@@ -42,7 +42,7 @@ form.inscription  button {
     display: block;
     width: 100%;
     padding: 0.8rem;
-    background-color: #E74C3C;
+    background-color: #ff8300;
     color: white;
     border: none;
     font-size: 1rem;
@@ -51,7 +51,7 @@ form.inscription  button {
 }
 
 form.inscription button:hover {
-    background-color: #d15345;
+    background-color: #e57200;
 }
 
 form.inscription a {

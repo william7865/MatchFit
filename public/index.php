@@ -95,6 +95,12 @@ switch ($path) {
         }
         break;
 
+    case '/addReview':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController->addReview();
+        }
+        break;
+
     default:
         http_response_code(404);
         echo "Page not found";

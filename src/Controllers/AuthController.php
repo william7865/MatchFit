@@ -83,25 +83,23 @@ class AuthController {
             $userId = $_SESSION['user_id'];
             $name = $_POST['name'] ?? '';
             $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? null;
+            $password = !empty($_POST['password']) ? $_POST['password'] : null;
             $bio = $_POST['bio'] ?? '';
             $video_url = $_POST['video_url'] ?? '';
             $status = $_POST['status'] ?? 'unavailable';
-            $sports = $_POST['sports'] ?? [];
 
+            // Mettre à jour les informations de l'utilisateur
             User::update($userId, $name, $email, $password);
 
+            // Mettre à jour les informations du coach si l'utilisateur est un coach
             if ($_SESSION['role'] === 'coach') {
                 User::updateCoachProfile($userId, $bio, $video_url, $status);
             }
-
-            User::updateUserSports($userId, $sports);
 
             header('Location: /profile');
             exit;
         }
     }
-
     public function removeUserSport() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (session_status() == PHP_SESSION_NONE) {
@@ -171,6 +169,33 @@ class AuthController {
         }
     }
 
+    public function addReview() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (!isset($_SESSION['user_id'])) {
+                header('Location: /login');
+                exit;
+            }
+
+            $coachId = $_POST['coach_id'];
+            $userId = $_SESSION['user_id'];
+            $rating = $_POST['rating'];
+            $comment = $_POST['comment'];
+
+            if (empty($coachId)) {
+                echo "Erreur : ID du coach non défini ou vide.";
+                exit;
+            }
+
+            User::addReview($coachId, $userId, $rating, $comment);
+
+            // Rediriger vers la page du profil du coach avec l'ID du coach
+            header('Location: /coach/profile/' . $coachId);
+            exit;
+        }
+    }
     public function logout() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();

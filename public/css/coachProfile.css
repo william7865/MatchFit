@@ -1,118 +1,107 @@
-body {
+/* Styles généraux pour le conteneur principal */
+.coach-profile-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
 }
 
-h1, h2 {
+/* Styles pour le titre principal */
+.coach-profile-container h1 {
     text-align: center;
-    color: #333; /* Couleur noire */
+    color: #333;
+    margin-bottom: 2rem;
 }
 
-.coach-profile .form-container {
+/* Styles pour le conteneur des formulaires */
+.coach-profile-container .form-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-.coach-profile form {
+/* Styles pour les formulaires */
+.coach-profile-container form {
     flex: 1;
-    padding: 20px;
+    padding: 1.5rem;
     background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.coach-profile label {
+.coach-profile-container form label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #333;
+    color: #555;
 }
 
-.coach-profile input[type="text"],
-.coach-profile input[type="email"],
-.coach-profile input[type="url"],
-.coach-profile input[type="number"],
-.coach-profile textarea,
-.coach-profile select {
+.coach-profile-container form input,
+.coach-profile-container form textarea,
+.coach-profile-container form select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
     border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 1rem;
 }
 
-.coach-profile textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-.coach-profile button {
-    display: inline-block;
-    padding: 10px 20px;
+.coach-profile-container form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #ff8300;
     color: #fff;
-    background-color: #ff8300; /* Couleur orange */
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease-in-out;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.coach-profile button:hover {
-    background-color: #e67300; /* Teinte plus foncée d'orange pour le hover */
+.coach-profile-container form button:hover {
+    background-color: #e57200;
 }
 
-.coach-profile .sessions-list {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 0;
+/* Styles pour la liste des séances */
+.coach-profile-container ul {
     list-style: none;
-}
-
-.coach-profile .sessions-list li {
+    padding: 0;
+    margin: 0;
     background-color: #fff;
-    margin-bottom: 10px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.coach-profile strong {
-    color: #ff8300; /* Couleur orange */
+.coach-profile-container ul li {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Footer and Header adjustments to match color theme */
-header, footer {
-    background-color: #000; /* Couleur noire */
-    color: #fff; /* Texte blanc */
+.coach-profile-container ul li:last-child {
+    border-bottom: none;
 }
 
-header a, footer a {
-    color: #ff8300; /* Liens en orange */
-    text-decoration: none;
-}
-
-header a:hover, footer a:hover {
-    color: #fff; /* Texte blanc au survol */
+.coach-profile-container ul li strong {
+    display: block;
+    color: #ff8300;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .coach-profile .form-container {
+    .coach-profile-container .form-container {
         flex-direction: column;
     }
 
-    .coach-profile form {
-        margin-bottom: 20px;
+    .coach-profile-container form {
+        width: 100%;
+    }
+
+    .coach-profile-container ul {
+        padding: 1rem;
     }
 }

@@ -59,7 +59,7 @@ class User {
         $sql = "UPDATE users SET name = ?, email = ?";
         $params = [$name, $email];
 
-        if ($password !== null) {
+        if (!empty($password)) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $sql .= ", password = ?";
             $params[] = $hashedPassword;
@@ -143,6 +143,24 @@ class User {
         $stmt->execute([$coachId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function addReview($coachId, $userId, $rating, $comment) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "INSERT INTO reviews (coach_id, user_id, rating, comment) VALUES (?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([$coachId, $userId, $rating, $comment]);
+    }
+
+    public static function getReviewsByCoach($coachId) {
+        $pdo = self::getDatabaseConnection();
+        $sql = "SELECT reviews.*, users.name AS user_name FROM reviews 
+                JOIN users ON reviews.user_id = users.id 
+                WHERE reviews.coach_id = ? ORDER BY reviews.created_at DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$coachId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     private static function getDatabaseConnection() {
         $host = getenv('DB_HOST');
         $db = getenv('DB_NAME');

@@ -1,8 +1,14 @@
-/* Header Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Centre tout verticalement */
+  align-items: center;
   background-color: #000;
   padding: 1rem 2rem;
   color: #fff;
@@ -18,11 +24,11 @@ header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  align-items: center; /* Centre les liens dans le conteneur */
+  align-items: center;
 }
 
 header nav ul li {
-  margin: 0 1rem; /* Espacement uniforme entre les liens */
+  margin: 0 1rem;
 }
 
 header nav ul li a,
@@ -30,33 +36,30 @@ header .btn-nav {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
-  padding: 0.5rem 0.75rem; /* Assure un padding uniforme pour tous les éléments */
+  padding: 0.5rem 0.75rem;
   display: inline-block;
-  border-radius: 5px; /* Ajoute une bordure arrondie uniforme */
-  transition: background-color 0.2s ease-in-out;
-}
-
-header nav ul li a:hover,
-header .btn-nav:hover {
-  background-color: #ff8300; /* Effet hover pour tous les liens */
-  color: #fff;
-}
-
-header .buttons button {
-  background-color: #ff8300;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
   border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+  position: relative;
 }
 
-header .buttons button:hover {
-  background-color: #fff;
-  color: #ff8300;
+header nav ul li a::after,
+header .btn-nav::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  left: 0;
+  background: #ff8300;
+  transition: width 0.3s ease, right 0.3s ease;
 }
 
+header nav ul li a:hover::after,
+header .btn-nav:hover::after {
+  width: 100%;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   header {
@@ -72,39 +75,4 @@ header .buttons button:hover {
   header nav ul li {
     margin: 0.5rem 0;
   }
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  
-}
-
-nav ul li {
-  position: relative;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #000; /* Couleur du texte */
-  font-weight: bold;
-  padding: 5px 0; /* Ajoute du padding pour l'espace autour du texte */
-  position: relative;
-}
-
-nav ul li a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  display: block;
-  margin-top: 5px;
-  left: 0;
-  background: #ff8300; /* Couleur de la ligne de surlignement */
-  transition: width 0.3s ease, right 0.3s ease; /* Animation de la ligne */
-}
-
-nav ul li a:hover::after {
-  width: 100%;
 }

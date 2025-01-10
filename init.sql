@@ -46,9 +46,21 @@ CREATE TABLE IF NOT EXISTS reviews (
     coach_id INT REFERENCES coaches(id) ON DELETE CASCADE,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
     rating INT CHECK(rating >= 1 AND rating <= 5),
-    comment TEXT
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Table des séances de sport
+CREATE TABLE IF NOT EXISTS sessions (
+    id SERIAL PRIMARY KEY,
+    coach_id INT REFERENCES users(id) ON DELETE CASCADE,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insertion des sports
 INSERT INTO sports (name) VALUES ('Football');
 INSERT INTO sports (name) VALUES ('Basketball');
 INSERT INTO sports (name) VALUES ('Tennis');
