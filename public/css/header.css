@@ -14,11 +14,6 @@ header {
   color: #fff;
 }
 
-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
 header nav ul {
   display: flex;
   list-style: none;
@@ -60,7 +55,30 @@ header nav ul li a:hover::after,
 header .btn-nav:hover::after {
   width: 100%;
 }
-/* Responsive Design */
+.logo img {
+  width: 10%;
+  object-fit: cover;
+  height: auto;
+}
+
+header form button {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  display: inline-block;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+header form button:hover {
+  background-color: #ff8300;
+  color: #000;
+  border-color: #ff8300;
+}
+
 @media (max-width: 768px) {
   header {
     flex-direction: column;

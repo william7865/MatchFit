@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="/css/header.css">
 <header>
-    <div class="logo">logo</div>
+    <div class="logo">
+            <img src="/image/logo.jpg" alt="Logo">
+        </div>
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
