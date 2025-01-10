@@ -28,16 +28,14 @@ session_start();
                 <div class="ambassador-section">
                     <h3>Ambassadeur</h3>
                     <p>
-                        C’est le nec plus ultra des professeurs. Qualité du profil, excellence du diplôme, réponse garantie. Amine organisera avec soin votre premier cours de Coaching Sportif.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, ipsum voluptatem adipisci perspiciatis asperiores, fugit, numquam ea ab cumque id iure. Eligendi perspiciatis dolorem rerum fugiat impedit animi ex consequatur.
                     </p>
                 </div>
             </div>
 
             <!-- Carte de profil du coach -->
             <div class="profile-card">
-                <img src="/path/to/profile-picture.jpg" alt="Photo de <?php echo htmlspecialchars($coach['name']); ?>">
                 <h2><?php echo htmlspecialchars($coach['name']); ?></h2>
-                <p>⭐ 5 (91 avis)</p>
                 <p>Email : <?php echo htmlspecialchars($coach['email']); ?></p>
                 <p>Bio : 
                     <?php if (!empty($coach['bio'])): ?>
@@ -53,11 +51,9 @@ session_start();
                         Le coach n'a pas fourni de statut.
                     <?php endif; ?>
                 </p>
-                <p>Tarif : <strong>50€</strong></p>
                 <p>Réponse : <strong>5h</strong></p>
                 <p>Élèves : <strong>50+</strong></p>
                 <a href="#" class="contact-button">Contacter</a>
-                <p>1er cours offert</p>
             </div>
         </div>
 

@@ -87,14 +87,17 @@ class AuthController {
             $bio = $_POST['bio'] ?? '';
             $video_url = $_POST['video_url'] ?? '';
             $status = $_POST['status'] ?? 'unavailable';
+            $sports = $_POST['sports'] ?? [];
 
             // Mettre à jour les informations de l'utilisateur
             User::update($userId, $name, $email, $password);
 
-            // Mettre à jour les informations du coach si l'utilisateur est un coach
+            
             if ($_SESSION['role'] === 'coach') {
                 User::updateCoachProfile($userId, $bio, $video_url, $status);
             }
+
+            USER::updateUserSports($userId,$sports);
 
             header('Location: /profile');
             exit;

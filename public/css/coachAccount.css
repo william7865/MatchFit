@@ -149,7 +149,7 @@ h2 {
 /* Styles pour la section "Ajouter un avis" */
 .review-form {
     display: flex;
-    width: 70%;
+    width: 60%;
     flex-direction: column;
     gap: 15px;
     background-color: #fff;
@@ -164,7 +164,7 @@ h2 {
 }
 
 .review-form textarea {
-    width: 80%;
+    width: 90%;
     min-height: 100px;
     padding: 10px;
     font-size: 16px;

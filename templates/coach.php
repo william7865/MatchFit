@@ -5,12 +5,34 @@ session_start();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Coachs</title>
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <title>Coaching Sportif</title>
+    <link rel="stylesheet" href="/css/coach.css">
 </head>
 <body>
     <?php include __DIR__ . '/partials/header.php'; ?>
-    <h1>Liste des Coachs</h1>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Coaching sportif : 16 703 coaches pour un programme sur-mesure</h1>
+            <ul class="hero-features">
+                <li>🥇 La crème du coaching sportif en France</li>
+                <li>🏋️ 16 703 entraîneurs</li>
+                <li>🔒 Paiement sécurisé</li>
+                <li>💸 Aucune commission</li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Coaching Sportif">
+                <button>Rechercher</button>
+            </div>
+        </div>
+        <div class="hero-images">
+            <div class="image image-1"></div>
+            <div class="image image-2"></div>
+            <div class="image image-3"></div>
+        </div>
+    </section>
+
+    <h1>Trouvez le coach parfait pour atteindre vos objectifs !</h1>
     <div class="coaches-container">
         <?php foreach ($coaches as $coach): ?>
             <a href="/coach/profile/<?php echo $coach['id']; ?>" class="coach-card-link">
