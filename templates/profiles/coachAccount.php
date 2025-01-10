@@ -10,13 +10,11 @@ session_start();
 </head>
 <body>
     <?php include __DIR__ . '/../partials/header.php'; ?>
-
     <div class="coach-page">
         <!-- Section principale -->
         <div class="main-section">
             <div class="left-content">
                 <h1>Coaching Privé Remise en forme et Perte de Poids. À Domicile/En Extérieur/En Salle/En Visio/En Ligne</h1>
-
                 <h2>Lieux du cours</h2>
                 <ul>
                     <li>📍 Chez Amine : Paris 11e</li>
@@ -37,14 +35,30 @@ session_start();
             <div class="profile-card">
                 <h2><?php echo htmlspecialchars($coach['name']); ?></h2>
                 <p>Email : <?php echo htmlspecialchars($coach['email']); ?></p>
-                <p>Bio : 
+                <p>Bio :
                     <?php if (!empty($coach['bio'])): ?>
                         <?php echo htmlspecialchars($coach['bio']); ?>
                     <?php else: ?>
                         Le coach n'a pas fourni de bio.
                     <?php endif; ?>
                 </p>
-                <p>Statut : 
+                <p>Vidéo :
+                    <?php if (!empty($coach['video_url'])): ?>
+                        <?php 
+                            // Convertir l'URL de la vidéo en URL d'intégration
+                            $video_url = htmlspecialchars($coach['video_url']);
+                            if (preg_match('/youtu\.be\/([^\?]*)/', $video_url, $matches) || preg_match('/youtube\.com\/watch\?v=([^\&]*)/', $video_url, $matches)) {
+                                $embed_url = 'https://www.youtube.com/embed/' . $matches[1];
+                            } else {
+                                $embed_url = $video_url;
+                            }
+                        ?>
+                        <iframe width="560" height="315" src="<?php echo $embed_url; ?>" frameborder="0" allowfullscreen></iframe>
+                    <?php else: ?>
+                        Le coach n'a pas fourni de vidéo.
+                    <?php endif; ?>
+                </p>
+                <p>Statut :
                     <?php if (!empty($coach['status'])): ?>
                         <?php echo htmlspecialchars($coach['status'] === 'available' ? 'Disponible' : 'Indisponible'); ?>
                     <?php else: ?>
@@ -78,27 +92,25 @@ session_start();
         </div>
 
         <h2>Ajouter un avis</h2>
-<form method="POST" action="/addReview" class="review-form">
-    <input type="hidden" name="coach_id" value="<?php echo htmlspecialchars($coach['id']); ?>">
+        <form method="POST" action="/addReview" class="review-form">
+            <input type="hidden" name="coach_id" value="<?php echo htmlspecialchars($coach['id']); ?>">
+            <div class="form-group">
+                <label for="rating">Note globale :</label>
+                <div class="stars">
+                    <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 étoiles"></label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 étoiles"></label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 étoiles"></label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 étoiles"></label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 étoile"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comment">Partagez votre expérience :</label>
+                <textarea id="comment" name="comment" required></textarea>
+            </div>
+            <button type="submit" class="add-review-button">Ajouter l'avis</button>
+        </form>
 
-    <div class="form-group">
-        <label for="rating">Note globale :</label>
-        <div class="stars">
-            <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 étoiles"></label>
-            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 étoiles"></label>
-            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 étoiles"></label>
-            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 étoiles"></label>
-            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 étoile"></label>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="comment">Partagez votre expérience :</label>
-        <textarea id="comment" name="comment" required></textarea>
-    </div>
-
-    <button type="submit" class="add-review-button">Ajouter l'avis</button>
-</form>
         <!-- Affichage des avis -->
         <h2>Avis <span class="info-icon">ⓘ</span></h2>
         <div class="coach-reviews">
@@ -134,7 +146,6 @@ session_start();
             <?php endif; ?>
         </div>
     </div>
-
     <?php include __DIR__ . '/../partials/footer.php'; ?>
 </body>
 </html>
