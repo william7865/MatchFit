@@ -66,3 +66,27 @@ form.inscription a {
 form.connexion a:hover {
     text-decoration: underline;
 }
+form.inscription select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+form.inscription select:focus {
+    border-color: #ff8300;
+    outline: none;
+    background-color: #fafafa;
+}
+
+form.inscription select option {
+    padding: 0.8rem;
+    font-size: 1rem;
+}
