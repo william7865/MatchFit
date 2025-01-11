@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="password2" id="password2" required>
         <label for="role">Role:</label>
         <select id="role" name="role" required>
-            <option value="user">User</option>
+            <option value="user">Utilisateur</option>
             <option value="coach">Coach</option>
         </select>
         <button type="submit">S'inscrire</button>
